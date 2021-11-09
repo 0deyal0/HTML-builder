@@ -14,8 +14,6 @@ const readFiles = (dirname = path.join(__dirname, 'secret-folder')) => {
 
                 if (isFile) {
                     console.log(`${name} - ${ext} - ${stat.size}b`);
-                } else {
-                    readFiles(filepath)
                 }
             });
         });
