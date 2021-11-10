@@ -55,7 +55,9 @@ const buildPage = async (dir = __dirname) => {
     componentNames.forEach(componentName => {
         templateData = templateData.replace(new RegExp(`{{${componentName}}}`, 'g'), componentsDict[componentName]);
     });
-    await fs.promises.rmdir(dest, { recursive: true });
+    try {
+        await fs.promises.rm(dest, { recursive: true });
+    } catch { }
     await fs.promises.mkdir(dest, { recursive: true });
     copyDir(path.resolve(dir, 'assets'), path.resolve(dest, 'assets'));
     mergeStyles(path.resolve(dir, 'styles'), path.resolve(dest, 'style.css'));
